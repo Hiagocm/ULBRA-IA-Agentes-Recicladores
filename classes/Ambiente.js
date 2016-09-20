@@ -78,24 +78,24 @@ class Ambiente {
 
 	_geraRecicladores(ambiente) {
 		let arrayRecicladores = [];
-		for (let i = 0 ; i < ambiente.qntRecicladores ; i++) {
-			arrayRecicladores.push(new Reciclador());
+		for (let i = 1 ; i <= ambiente.qntRecicladores ; i++) {
+			arrayRecicladores.push(new Reciclador(i));
 		}
 		return arrayRecicladores;
 	}
 
 	_geraLixeirasOrganico(ambiente) {
 		let arrayLixeiraO = [];
-		for (let i = 0 ; i < ambiente.qntLixeiraO ; i++) {
-			arrayLixeiraO.push(new Lixeira("Organico"));
+		for (let i = 1 ; i <= ambiente.qntLixeiraO ; i++) {
+			arrayLixeiraO.push(new Lixeira(i, "Organico"));
 		}
 		return arrayLixeiraO;
 	}
 
 	_geraLixeirasSeco(ambiente) {
 		let arrayLixeiraS = [];
-		for (let i = 0 ; i < ambiente.qntLixeiraS ; i++) {
-			arrayLixeiraS.push(new Lixeira("Seco"));
+		for (let i = 1 ; i <= ambiente.qntLixeiraS ; i++) {
+			arrayLixeiraS.push(new Lixeira(i, "Seco"));
 		}
 		return arrayLixeiraS;
 	}
@@ -173,11 +173,11 @@ class Ambiente {
 
 
 		// Cria um array com a junção de todos os arrays existentes.
-		let arrayFinal = espacosVazios.concat( _geraRecicladores,
-											   _geraLixeirasOrganico,
-											   _geraLixeirasSeco,
-											   _geraLixosOrganico,
-											   _geraLixosSeco ) ;
+		let arrayFinal = espacosVazios.concat( _geraRecicladores     (ambiente),
+											   _geraLixeirasOrganico (ambiente),
+											   _geraLixeirasSeco     (ambiente),
+											   _geraLixosOrganico    (ambiente),
+											   _geraLixosSeco        (ambiente) ) ;
 
 
 		// Embaralha os agentes dentro do array aleatóriamente.
