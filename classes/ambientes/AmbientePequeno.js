@@ -1,3 +1,7 @@
+/* Este método herda as características da classe pai (Ambiente),
+   possuindo seus atributos e métodos. Nesta classe, é designado
+   os parâmetros necessários para a geração de um ambiente. */
+   
 class AmbientePequeno extends Ambiente {
 	
 	constructor() {

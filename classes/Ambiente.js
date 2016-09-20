@@ -10,6 +10,8 @@ class Ambiente {
 		this.qntLixoS;
 	}
 
+	// Métodos Getters da classe
+
 	get x() {
 		return this.x;
 	}
@@ -39,6 +41,9 @@ class Ambiente {
 	}
 
 
+
+
+	// Método para validar um ambiente dentro das especificações mínimas de quantidade de agentes.
 	validarAmbiente(ambiente) {
 		if ( ambiente.qntReciclador < 2 ||
 			 ambiente.qntLixeiraO   < 1 ||
@@ -51,6 +56,9 @@ class Ambiente {
 
 	}
 
+
+
+	// Método para printar todos os atributos de um ambiente.
 	printarParametros(ambiente) {
 		console.log(`Eixo x: ${ambiente.x} 
 					 Eixo y: ${ambiente.y} 
@@ -60,6 +68,13 @@ class Ambiente {
 					 qntLixoS : ${ambiente.qntLixoS} 
 					`);
 	}
+
+
+
+
+
+	/* Geração de todos os objetos que estarão presentes na matriz. 
+	   Estes objetos serão armazenados em arrays (um array para cada tipo de objeto). */
 
 	_geraRecicladores(ambiente) {
 		let arrayRecicladores = [];
@@ -101,6 +116,11 @@ class Ambiente {
 		return arrayLixoS;
 	}
 
+
+
+
+
+	// Método para embaralhar objetos dentro de um array.
 	_shuffle(array) {
 		let currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -120,16 +140,20 @@ class Ambiente {
 	  	return array;
 	}
 
+	// Método para transformar um array unidimensional em uma matriz bidimensional.
 	_listToMatrix(list, elementsPerSubArray) {
-	    let matrix = [], i, k;
+	    let matrix = [], i, k; // Cria uma matriz junto a outras variáveis auxiliares...
 
+	    // Enquanto o array não foi percorrido por completo...
 	    for (i = 0, k = -1; i < list.length; i++) {
+
+	    	// Se indexador do array for 0 ou divisível pelo número de colunas por linha...
 	        if (i % elementsPerSubArray === 0) {
 	            k++;
-	            matrix[k] = [];
+	            matrix[k] = []; // A matriz cria uma nova linha...
 	        }
 
-	        matrix[k].push(list[i]);
+	        matrix[k].push(list[i]); // A matriz adiciona na linha os elementos do array.
 	    }
 
 	    return matrix;
@@ -137,21 +161,30 @@ class Ambiente {
 
 	geraMatriz(ambiente) {
 		
+		// Calcula quantos espaços vazios haverá na matriz.
 		let espacosVazios = (ambiente.x * ambiente.y) - (  ambiente.qntR 
 														 + ambiente.qntLixeiraO 
 														 + ambiente.qntLixeiraS
 														 + ambiente.qntLixoO
 														 + ambiente.qntLixoS );
+
+		// Cria um array com os espaços vazios.
 		let arrayEspacosVazios = new Array(espacosVazios);
 
+
+		// Cria um array com a junção de todos os arrays existentes.
 		let arrayFinal = espacosVazios.concat( _geraRecicladores,
 											   _geraLixeirasOrganico,
 											   _geraLixeirasSeco,
 											   _geraLixosOrganico,
 											   _geraLixosSeco ) ;
 
+
+		// Embaralha os agentes dentro do array aleatóriamente.
 		arrayFinal = _shuffle(arrayFinal);
 
+
+		// Transforma o array em uma matriz.
 		arrayFinal = _listToMatrix(arrayFinal, ambiente.x);
 	}
 
