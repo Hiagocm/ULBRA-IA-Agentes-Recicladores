@@ -5,13 +5,14 @@
 class AmbientePequeno extends Ambiente {
 	
 	constructor() {
-		super.x           = 10;
-		super.y           = 10;
-		super.qunR        = 2;
-		super.qntLixeiraO = 1;
-		super.qntLixeiraS = 1;
-		super.qntLixoO    = 6
-		super.qntLixoS    = 6;
+		super();
+		this.x           = 10;
+		this.y           = 10;
+		this.qunR        = 2;
+		this.qntLixeiraO = 1;
+		this.qntLixeiraS = 1;
+		this.qntLixoO    = 6;
+		this.qntLixoS    = 6;
 	}
 
 }
