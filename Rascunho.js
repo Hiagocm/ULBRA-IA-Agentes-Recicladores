@@ -9,6 +9,25 @@
 		this._qntLixoO    = qntLixoO;
 	}
 
+	get qntR() {
+		return this._qntReciclador;
+	}
+
+	get qntLixeiraO() {
+		return this._qntLixeiraO;
+	}
+
+	get qntLixeiraS() {
+		return this._qntLixeiraS;
+	}
+
+	get qntLixoO() {
+		return this._qntLixoO;
+	}
+
+	get qntLixoS() {
+		return this._qntLixoS;
+	}
 
 
 */
