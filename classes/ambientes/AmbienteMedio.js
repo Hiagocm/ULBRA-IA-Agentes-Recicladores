@@ -5,13 +5,14 @@
 class AmbienteMedio extends Ambiente {
 	
 	constructor() {
-		super.x           = 20;
-		super.y           = 12;
-		super.qunR        = 3;
-		super.qntLixeiraO = 2;
-		super.qntLixeiraS = 2;
-		super.qntLixoO    = 12;
-		super.qntLixoS    = 15;
+		super();
+		this.x           = 20;
+		this.y           = 12;
+		this.qunR        = 3;
+		this.qntLixeiraO = 2;
+		this.qntLixeiraS = 2;
+		this.qntLixoO    = 12;
+		this.qntLixoS    = 15;
 	}
 
 }
