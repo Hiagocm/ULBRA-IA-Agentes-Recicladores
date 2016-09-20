@@ -1,6 +1,13 @@
-var c = document.getElementById("visual"),
+var 
+    CANVAS_WIDTH = window.innerWidth - 100,
+    CANVAS_HEIGHT = window.innerHeight - 100,
+    c = document.getElementById("visual"),
     canvas = c.getContext("2d"),
     count = 0;
+
+c.width  = CANVAS_WIDTH;
+c.height = CANVAS_HEIGHT;
+c.style.backgroundColor = 'black';
 
 setInterval(function () {
     'use strict';
