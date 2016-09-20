@@ -1,6 +1,7 @@
 class Lixeira {
 
-	constructor(tipo) {
+	constructor(id, tipo) {
+		this._id 		 = id;
 		this._capacidade = 6;
 		this._qntLixo 	 = 0;
 		this._tipo		 = tipo; // O tipo pode ser "Organico" ou "Seco".
