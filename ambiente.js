@@ -61,25 +61,98 @@ class Ambiente {
 					`);
 	}
 
-	_geraLixeirasOrganico(ambiente) {
-		let arrayLO = [];
-		for (let i = 0 ; i < ambiente.qntLixeiraO ; i++) {
-			arrayLO.push(new Lixeira("Organico"));
+	_geraRecicladores(ambiente) {
+		let arrayRecicladores = [];
+		for (let i = 0 ; i < ambiente.qntRecicladores ; i++) {
+			arrayRecicladores.push(new Reciclador());
 		}
-		return arrayLO;
+		return arrayRecicladores;
+	}
+
+	_geraLixeirasOrganico(ambiente) {
+		let arrayLixeiraO = [];
+		for (let i = 0 ; i < ambiente.qntLixeiraO ; i++) {
+			arrayLixeiraO.push(new Lixeira("Organico"));
+		}
+		return arrayLixeiraO;
 	}
 
 	_geraLixeirasSeco(ambiente) {
-		let arrayLS = [];
+		let arrayLixeiraS = [];
 		for (let i = 0 ; i < ambiente.qntLixeiraS ; i++) {
-			arrayLS.push(new Lixeira("Seco"));
+			arrayLixeiraS.push(new Lixeira("Seco"));
 		}
-		return arrayLS;
+		return arrayLixeiraS;
+	}
+
+	_geraLixosOrganico(ambiente) {
+		let arrayLixoO = [];
+		for (let i = 0 ; i < ambiente.qntLixoO ; i++) {
+			arrayLixoO.push(new Lixo("Organico"));
+		}
+		return arrayLixoO;
+	}
+
+	_geraLixosSeco(ambiente) {
+		let arrayLixoS = [];
+		for (let i = 0 ; i < ambiente.qntLixoS ; i++) {
+			arrayLixoS.push(new Lixo("Seco"));
+		}
+		return arrayLixoS;
+	}
+
+	_shuffle(array) {
+		let currentIndex = array.length, temporaryValue, randomIndex;
+
+		// Enquanto ainda há elementos para embaralhar...
+		while (0 !== currentIndex) {
+
+	    	// Pega um elemento sobrando...
+	    	randomIndex = Math.floor(Math.random() * currentIndex);
+	    	currentIndex -= 1;
+
+	    	// E o troca pelo elemento atual.
+	    	temporaryValue = array[currentIndex];
+	    	array[currentIndex] = array[randomIndex];
+	    	array[randomIndex] = temporaryValue;
+		}
+
+	  	return array;
+	}
+
+	_listToMatrix(list, elementsPerSubArray) {
+	    let matrix = [], i, k;
+
+	    for (i = 0, k = -1; i < list.length; i++) {
+	        if (i % elementsPerSubArray === 0) {
+	            k++;
+	            matrix[k] = [];
+	        }
+
+	        matrix[k].push(list[i]);
+	    }
+
+	    return matrix;
 	}
 
 	geraMatriz(ambiente) {
 		
+		let espacosVazios = (ambiente.x * ambiente.y) - (  ambiente.qntR 
+														 + ambiente.qntLixeiraO 
+														 + ambiente.qntLixeiraS
+														 + ambiente.qntLixoO
+														 + ambiente.qntLixoS );
+		let arrayEspacosVazios = new Array(espacosVazios);
 
+		let arrayFinal = espacosVazios.concat( _geraRecicladores,
+											   _geraLixeirasOrganico,
+											   _geraLixeirasSeco,
+											   _geraLixosOrganico,
+											   _geraLixosSeco ) ;
+
+		arrayFinal = _shuffle(arrayFinal);
+
+		arrayFinal = _listToMatrix(arrayFinal, ambiente.x);
 	}
 
 }
