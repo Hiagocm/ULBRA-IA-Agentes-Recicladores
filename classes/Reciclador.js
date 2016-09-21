@@ -30,45 +30,39 @@ class Reciclador {
 		for (let i = 1, decisao = false ; decisao == false ; i++ ) {
 
 						  // Lixo em cima
-						 if ( (matriz[this._posicaoX]  [(this._posicaoY)+i]) == "Lixo"  ) {
+			if ( matriz[this._posicaoX][(this._posicaoY)+i] === "Lixo"  ) {
 							this.andaParaCima();
 
 							// Lixo a direita
-			} else if ( (matriz[(this._posicaoX)+i]  [this._posicaoY]) == "Lixo"  ) {
+			} else if ( matriz[(this._posicaoX)+i][this._posicaoY] === "Lixo"  ) {
 							this.andaParaDireita();
 
 							// Lixo em baixo
-			} else if ( (matriz[this._posicaoX][(this._posicaoY)-i]) == "Lixo"  ) {
+			} else if ( matriz[this._posicaoX][(this._posicaoY)-i] === "Lixo"  ) {
 							this.andaParaBaixo();
 
 							// Lixo a esquerda
-			} else if ( (matriz[(this._posicaoX)-i][this._posicaoY]) == "Lixo"  ) {
+			} else if ( matriz[(this._posicaoX)-i][this._posicaoY] === "Lixo"  ) {
 							this.andaParaEsquerda();
 
-
-
 							// Lixo em cima direita
-			} else  if ( (matriz[(this._posicaoX)+i]  [(this._posicaoY)+i]) == "Lixo"  ) {
+			} else  if ( matriz[(this._posicaoX)+i][(this._posicaoY)+i] === "Lixo"  ) {
 							this.andaParaCima();
 
 							// Lixo a direita baixo
-			} else if ( (matriz[(this._posicaoX)+i]  [(this._posicaoY)-i]) == "Lixo"  ) {
+			} else if ( matriz[(this._posicaoX)+i][(this._posicaoY)-i] === "Lixo"  ) {
 							this.andaParaDireita();
 
 							// Lixo em baixo esquerda
-			} else if ( (matriz[(this._posicaoX)-i][(this._posicaoY)-i]) == "Lixo"  ) {
+			} else if ( matriz[(this._posicaoX)-i][(this._posicaoY)-i] === "Lixo"  ) {
 							this.andaParaBaixo();
 
 							// Lixo a esquerda cima
-			} else if ( (matriz[(this._posicaoX)-i][(this._posicaoY)+i]) == "Lixo"  ) {
+			} else if ( matriz[(this._posicaoX)-i][(this._posicaoY)+i] === "Lixo"  ) {
 							this.andaParaEsquerda();
 
-
-		}
-		
-
+			}
 	}
-
 }
 
 /*- Ele é um agente reativo que se movimenta no ambiente, uma célula em qualquer direção a cada ciclo.
