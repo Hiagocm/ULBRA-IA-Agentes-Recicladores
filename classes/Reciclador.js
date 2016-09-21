@@ -30,38 +30,39 @@ class Reciclador {
 		for (let i = 1, decisao = false ; decisao == false ; i++ ) {
 
 						  // Lixo em cima
-			if ( matriz[this._posicaoX][(this._posicaoY)+i] === "Lixo"  ) {
+			if ( matriz[this._posicaoX][this._posicaoY+i] instanceof Lixo  ) {
 							this.andaParaCima();
 
 							// Lixo a direita
-			} else if ( matriz[(this._posicaoX)+i][this._posicaoY] === "Lixo"  ) {
+			} else if ( matriz[this._posicaoX+i][this._posicaoY] instanceof Lixo  ) {
 							this.andaParaDireita();
 
 							// Lixo em baixo
-			} else if ( matriz[this._posicaoX][(this._posicaoY)-i] === "Lixo"  ) {
+			} else if ( matriz[this._posicaoX][this._posicaoY-i] instanceof Lixo  ) {
 							this.andaParaBaixo();
 
 							// Lixo a esquerda
-			} else if ( matriz[(this._posicaoX)-i][this._posicaoY] === "Lixo"  ) {
+			} else if ( matriz[this._posicaoX-i][this._posicaoY] instanceof Lixo  ) {
 							this.andaParaEsquerda();
 
 							// Lixo em cima direita
-			} else  if ( matriz[(this._posicaoX)+i][(this._posicaoY)+i] === "Lixo"  ) {
+			} else  if ( matriz[this._posicaoX+i][(this._posicaoY)+i] instanceof Lixo  ) {
 							this.andaParaCima();
 
 							// Lixo a direita baixo
-			} else if ( matriz[(this._posicaoX)+i][(this._posicaoY)-i] === "Lixo"  ) {
+			} else if ( matriz[(this._posicaoX)+i][this._posicaoY-i] instanceof Lixo  ) {
 							this.andaParaDireita();
 
 							// Lixo em baixo esquerda
-			} else if ( matriz[(this._posicaoX)-i][(this._posicaoY)-i] === "Lixo"  ) {
+			} else if ( matriz[(this._posicaoX)-i][this._posicaoY-i] instanceof Lixo  ) {
 							this.andaParaBaixo();
 
 							// Lixo a esquerda cima
-			} else if ( matriz[(this._posicaoX)-i][(this._posicaoY)+i] === "Lixo"  ) {
+			} else if ( matriz[(this._posicaoX)-i][this._posicaoY+i] instanceof Lixo  ) {
 							this.andaParaEsquerda();
 
 			}
+		}
 	}
 }
 
