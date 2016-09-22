@@ -1,6 +1,6 @@
 var 
-    CANVAS_WIDTH = window.innerWidth - 400,
-    CANVAS_HEIGHT = window.innerHeight - 400,
+    CANVAS_WIDTH = 600,
+    CANVAS_HEIGHT = 300,
     c = document.getElementById("visual"),
     canvas = c.getContext("2d"),
     count = 0,
@@ -23,7 +23,7 @@ c.style.backgroundColor = 'white';
 function firstDraw(amb) {
     rowWidth  = CANVAS_WIDTH / amb.x,
     rowHeight = CANVAS_HEIGHT / amb.y;
-    itemSize  = (CANVAS_WIDTH / amb.x) / 4;
+    itemSize  = rowWidth / 4;
 
     for (x = 0; x <= amb.x; x++) {
         canvas.moveTo(rowWidth * x + p, p);
@@ -44,8 +44,8 @@ function draw(amb) {
     if (amb.matriz)
         for (x = 0; x < amb.x; x++) {
             for (y = 0; y < amb.y; y++) {
-                posX = (rowWidth * x + p) + rowWidth / 2.5;
-                posY = (rowHeight * y + p) + rowHeight / 2.5;
+                posX = (rowWidth * x + p) + rowWidth / 3;
+                posY = (rowHeight * y + p) + rowHeight / 3;
 
                 // limpa
                 canvas.clearRect(posX, posY, itemSize, itemSize);
@@ -65,6 +65,7 @@ function draw(amb) {
                     // desenha
                     canvas.fillRect(posX, posY, itemSize, itemSize);
                     
+                    // desenha imagem
                     if (item instanceof Lixeira && item._tipo === 'Organico') {
                         canvas.drawImage(document.getElementById('organico'), posX, posY, itemSize, itemSize);
                     } else if (item instanceof Lixeira && item._tipo === 'Seco') {
@@ -77,4 +78,11 @@ function draw(amb) {
     // aumenta o contador de ciclos para o usuario
     count++;
     document.getElementById("ciclo").innerHTML = count;
+}
+
+Array.prototype.remove = function(value) {
+    var i = this.indexOf(value);
+    if (i !== -1)
+        this.splice(i, 1);
+    return this;
 }
