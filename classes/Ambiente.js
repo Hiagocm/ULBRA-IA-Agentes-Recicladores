@@ -30,7 +30,7 @@ class Ambiente {
     }
     /* Gera objetos de acordo com suas respectivas quantidades */
     geraObjetos() {
-        let row, col;
+        let row, col, lixeiras = [];
         // enquanto tiver quantidades vai criar objetos
         while(
             this.qunR > 0            ||
@@ -42,11 +42,15 @@ class Ambiente {
             col = Math.floor(Math.random() * this.x);// função randomica para retornar um valor dentro do limite X (coluna)
             row = Math.floor(Math.random() * this.y);// função randomica para retornar um valor dentro do limite Y (Linha)
             if (!this.matriz[col][row])// se não possui nada ainda nesse lugar então cria um novo
-                this.matriz[col][row] = this.getObjeto(col, row);
+                this.matriz[col][row] = this.getObjeto(col, row, lixeiras);
+            
+            // salva lixeiras para passar para os agentes
+            if (this.matriz[col][row] instanceof Lixeira)
+                lixeiras.push(this.matriz[col][row]);
         }
     }
     /* Retorna qual objeto ainda tem quantidade para ser criado e diminui o valor da quantidade (alguma hora vai ficar ZERO) */
-    getObjeto(col, row) {
+    getObjeto(col, row, lixeiras) {
 		if (this.qntLixoO) {
             this.qntLixoO--;
             return new Lixo("Organico");
@@ -65,7 +69,7 @@ class Ambiente {
         }
         if (this.qunR) {
             this.qunR--;
-            return new Reciclador(col, row);
+            return new Reciclador(col, row, lixeiras);
         }
     }
 }

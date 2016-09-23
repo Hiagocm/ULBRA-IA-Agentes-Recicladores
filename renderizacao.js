@@ -3,7 +3,6 @@ var
     CANVAS_HEIGHT = 300,
     c = document.getElementById("visual"),
     canvas = c.getContext("2d"),
-    count = 0,
     p = 10,// padding
     itemSize,// define o tamanho dos objetos no ambiente Lixo, Reciclador e etc..
     x,// guarda posicao ao percorrer matriz pela linha (eixo x)
@@ -40,7 +39,7 @@ function firstDraw(amb) {
 }
 
 // faz todo desenho
-function draw(amb) {
+function draw(amb, atualCiclo) {
     if (amb.matriz)
         for (x = 0; x < amb.x; x++) {
             for (y = 0; y < amb.y; y++) {
@@ -76,8 +75,7 @@ function draw(amb) {
         }
 
     // aumenta o contador de ciclos para o usuario
-    count++;
-    document.getElementById("ciclo").innerHTML = count;
+    document.getElementById("ciclo").innerHTML = atualCiclo;
 }
 
 Array.prototype.remove = function(value) {

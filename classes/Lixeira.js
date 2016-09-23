@@ -8,24 +8,22 @@ class Lixeira {
 		this._posicaoY   = row;
 	}
 
-	get tipo() {
-		return this._tipo;
-	}
-
-
 	// Método que faz a lixeira receber o lixo do Reciclador.
-	recebeLixo() {
+	recebeLixo(qntLixo) {
 
 		// Se há capacidade na lixeira...
 		if (this._qntLixo < this._capacidade) {
 
-			this._qntLixo++; // Adiciona o lixo na lixeira
-
-			return 1; // Retorna 1 caso foi possível jogar o lixo na lixeira.
-
-		} else {
-			return 0; // Retorna zero caso a lixeira esteja cheia.
+			// se lixeira suporta todo lixo
+			if (qntLixo + this._qntLixo < this._capacidade) {
+				this._qntLixo += qntLixo; // Adiciona o lixo na lixeira
+				qntLixo = 0;
+			} else {
+				this._qntLixo = this._capacidade;// enche a lixeira
+				qntLixo = (this._qntLixo + qntLixo) - this._capacidade;// sobra
+			}
 		}
+		return qntLixo; // Retorna o numero de lixos q salvou na lixeira
 	}
 
 }
